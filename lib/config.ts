@@ -1,10 +1,10 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { mainnet } from 'wagmi/chains';
+import { optimism } from 'wagmi/chains';
 
 export const config = getDefaultConfig({
   appName: 'Aura Token Viewer',
   projectId: 'YOUR_PROJECT_ID', // User will need to replace this or we can use a public one for dev if allowed, but RainbowKit needs one.
-  chains: [mainnet],
+  chains: [optimism],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 
