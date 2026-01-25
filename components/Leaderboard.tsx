@@ -3,35 +3,36 @@
 import { useState, useEffect } from 'react';
 import { formatUnits } from 'viem';
 
-// Mock data for demonstration
-const MOCK_HOLDERS = [
-    { address: '0x1234...5678', balance: 1000000000000000000000n },
-    { address: '0x8765...4321', balance: 500000000000000000000n },
-    { address: '0xABCD...EFGH', balance: 250000000000000000000n },
-    { address: '0x9876...5432', balance: 100000000000000000000n },
-    { address: '0x5432...9876', balance: 50000000000000000000n },
-];
+interface Holder {
+    address: string;
+    balance: string; // BigInt serialized as string
+}
 
 export function Leaderboard() {
-    const [holders, setHolders] = useState(MOCK_HOLDERS);
-    const [isLoading, setIsLoading] = useState(false);
+    const [holders, setHolders] = useState<Holder[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    // In a real app, you would fetch data from an indexer here
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //       // const response = await fetch('/api/holders');
-    //       // const data = await response.json();
-    //       // setHolders(data);
-    //     } catch (error) {
-    //       console.error('Failed to fetch holders', error);
-    //     } finally {
-    //       setIsLoading(false);
-    //     }
-    //   };
-    //   fetchData();
-    // }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch('/api/holders');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                setHolders(data);
+            } catch (err) {
+                console.error('Failed to fetch holders', err);
+                setError('Failed to load leaderboard data. Please try again later.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (isLoading) return <div className="text-center p-4">Loading leaderboard...</div>;
+    if (error) return <div className="text-center p-4 text-red-500">{error}</div>;
 
     return (
         <div className="w-full max-w-4xl mx-auto">
@@ -51,7 +52,7 @@ export function Leaderboard() {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-blue-400">{holder.address}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                                    {formatUnits(holder.balance, 18)}
+                                    {formatUnits(BigInt(holder.balance), 18)}
                                 </td>
                             </tr>
                         ))}
@@ -59,7 +60,7 @@ export function Leaderboard() {
                 </table>
             </div>
             <p className="mt-4 text-sm text-gray-500 text-center">
-                * Displaying mock data. Connect an Indexer API (e.g., Alchemy) to fetch real-time data.
+                * Data fetched from Alchemy (Optimism).
             </p>
         </div>
     );

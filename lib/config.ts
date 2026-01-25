@@ -7,5 +7,3 @@ export const config = getDefaultConfig({
   chains: [optimism],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
-
-export const AURA_TOKEN_ADDRESS = '0xA4424fa67f268EDbed3Ed3892d4a6E753Db8baBe';

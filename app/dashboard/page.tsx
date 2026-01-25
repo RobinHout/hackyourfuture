@@ -2,7 +2,7 @@
 
 import { useAccount, useReadContract } from 'wagmi';
 import { erc20Abi, formatUnits } from 'viem';
-import { AURA_TOKEN_ADDRESS } from '../../lib/config';
+import { AURA_TOKEN_ADDRESS } from '../../lib/constants';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Leaderboard } from '../../components/Leaderboard';
 import { useEffect, useState } from 'react';
