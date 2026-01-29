@@ -166,6 +166,15 @@ export default function TokenDashboard() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Mini Game Section */}
+                    <div className="mt-12">
+                        <TokenGame
+                            tokenAddress={token.address}
+                            tokenName={token.name}
+                            tokenSymbol={token.symbol}
+                        />
+                    </div>
                 </main>
             </div>
         </div>
