@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import { AURA_TOKEN_ADDRESS } from '../../../lib/constants';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,8 +10,15 @@ interface HolderWithBalance {
 const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || 'demo';
 const ALCHEMY_URL = `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}`;
 
-export async function GET() {
+export async function GET(request: NextRequest) {
     try {
+        const searchParams = request.nextUrl.searchParams;
+        const tokenAddress = searchParams.get('address');
+
+        if (!tokenAddress) {
+            return NextResponse.json({ error: 'Token address is required' }, { status: 400 });
+        }
+
         // 1. Get all owners (addresses only)
         const ownersResponse = await fetch(ALCHEMY_URL, {
             method: 'POST',
@@ -21,7 +27,7 @@ export async function GET() {
                 id: 1,
                 jsonrpc: '2.0',
                 method: 'alchemy_getOwnersForToken',
-                params: [AURA_TOKEN_ADDRESS],
+                params: [tokenAddress],
             }),
         });
 
@@ -46,7 +52,7 @@ export async function GET() {
                         id: 1,
                         jsonrpc: '2.0',
                         method: 'alchemy_getTokenBalances',
-                        params: [owner, [AURA_TOKEN_ADDRESS]],
+                        params: [owner, [tokenAddress]],
                     }),
                 });
                 const balanceData = await balanceResponse.json();

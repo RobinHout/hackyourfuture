@@ -8,7 +8,11 @@ interface Holder {
     balance: string; // BigInt serialized as string
 }
 
-export function Leaderboard() {
+interface LeaderboardProps {
+    tokenAddress: string;
+}
+
+export function Leaderboard({ tokenAddress }: LeaderboardProps) {
     const [holders, setHolders] = useState<Holder[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -17,7 +21,8 @@ export function Leaderboard() {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch('/api/holders');
+                // Pass the token address to our backend API
+                const response = await fetch(`/api/holders?address=${tokenAddress}`);
                 if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
                 setHolders(data);
@@ -29,7 +34,7 @@ export function Leaderboard() {
             }
         };
         fetchData();
-    }, []);
+    }, [tokenAddress]);
 
     if (isLoading) return <div className="text-center p-4">Loading leaderboard...</div>;
     if (error) return <div className="text-center p-4 text-red-500">{error}</div>;
@@ -43,7 +48,7 @@ export function Leaderboard() {
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Rank</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Address</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Balance (AURA)</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Balance</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-700">
