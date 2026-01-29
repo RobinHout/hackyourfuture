@@ -3,6 +3,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Link from 'next/link';
 import { TOKENS } from '../lib/tokens';
+import { GlobalLeaderboard } from '../components/GlobalLeaderboard';
 
 export default function Home() {
   return (
@@ -61,6 +62,8 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        <GlobalLeaderboard />
       </main>
 
       <footer className="mt-20 text-center text-gray-600 text-sm">

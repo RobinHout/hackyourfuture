@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import { getTokenByAddress } from '../../../lib/tokens';
 import Link from 'next/link';
 import type { Address } from 'viem';
+import { TokenGame } from '../../../components/TokenGame';
 
 export default function TokenDashboard() {
     const { address: userAddress, isConnected } = useAccount();
