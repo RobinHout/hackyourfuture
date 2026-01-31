@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aura Token Viewer",
-  description: "View Aura token holders and leaderboard",
+  title: "TokenVerse",
+  description: "View TokenVerse token holders and leaderboard",
 };
 
 export default function RootLayout({
