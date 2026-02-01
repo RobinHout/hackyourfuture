@@ -15,7 +15,6 @@ export default function TokenDashboard() {
     const params = useParams();
     const [isMounted, setIsMounted] = useState(false);
 
-    // params.address can be string or string[]
     const tokenAddressString = typeof params.address === 'string' ? params.address : params.address?.[0];
     const token = getTokenByAddress(tokenAddressString || '');
 
@@ -111,11 +110,9 @@ export default function TokenDashboard() {
     // Main Dashboard
     return (
         <div className="min-h-screen bg-black text-white selection:bg-blue-500/30">
-            {/* Background Gradients */}
             <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black pointer-events-none" />
 
             <div className="relative z-10 max-w-4xl mx-auto p-6 md:p-12">
-                {/* Header */}
                 <header className="flex justify-between items-center mb-16">
                     <Link
                         href="/"
@@ -128,7 +125,6 @@ export default function TokenDashboard() {
                 </header>
 
                 <main className="space-y-8">
-                    {/* Hero Section */}
                     <div className="text-center mb-16 space-y-4">
                         <div className="inline-block p-4 rounded-3xl bg-gradient-to-tr from-blue-500/10 to-purple-500/10 border border-white/5 backdrop-blur-xl mb-6">
                             <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-blue-500 to-purple-600 flex items-center justify-center text-5xl font-bold shadow-xl shadow-blue-500/20">
@@ -143,7 +139,6 @@ export default function TokenDashboard() {
                         </p>
                     </div>
 
-                    {/* Balance Card */}
                     <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-2xl transition-all hover:border-white/20">
                         <div className="absolute top-0 right-0 p-32 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
 
@@ -167,7 +162,6 @@ export default function TokenDashboard() {
                         </div>
                     </div>
 
-                    {/* Mini Game Section */}
                     <div className="mt-12">
                         <TokenGame
                             tokenAddress={token.address}

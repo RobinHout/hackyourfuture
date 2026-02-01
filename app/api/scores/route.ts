@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// In-memory store for demonstration purposes.
-// In a real app, use a database (Postgres, Redis, etc.)
 let SCORES: { address: string; score: number; tokenAddress: string; tokenName: string; timestamp: number }[] = [];
 
 export async function GET() {
-    // Return top 50 scores, sorted by score descending
     const topScores = SCORES.sort((a, b) => b.score - a.score).slice(0, 50);
     return NextResponse.json(topScores);
 }
