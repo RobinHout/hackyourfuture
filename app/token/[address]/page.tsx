@@ -61,7 +61,7 @@ export default function TokenDashboard() {
                     <h1 className="text-3xl font-bold mb-2">{token.name} Dashboard</h1>
                     <p className="text-gray-400 mb-8">Connect your wallet to view your {token.symbol} holdings.</p>
                     <div className="flex justify-center mb-6">
-                        <ConnectButton />
+                        <ConnectButton showBalance={false} />
                     </div>
                     <Link href="/" className="text-sm text-gray-500 hover:text-white transition-colors">
                         ← Back to TokenVerse
@@ -98,8 +98,8 @@ export default function TokenDashboard() {
                         {token.address}
                     </div>
                     <div className="flex flex-col gap-4 items-center">
-                        <ConnectButton />
-                        <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
+                        <ConnectButton showBalance={false} />
+                        <Link href="/explore" className="text-blue-400 hover:text-blue-300 transition-colors">
                             Browse other tokens
                         </Link>
                     </div>
@@ -124,7 +124,7 @@ export default function TokenDashboard() {
                         <span>←</span>
                         <span className="font-medium">All Tokens</span>
                     </Link>
-                    <ConnectButton />
+                    <ConnectButton showBalance={false} />
                 </header>
 
                 <main className="space-y-8">

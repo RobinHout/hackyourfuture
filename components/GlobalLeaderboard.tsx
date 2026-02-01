@@ -46,7 +46,7 @@ export function GlobalLeaderboard() {
                         <tr className="text-left text-gray-500 border-b border-gray-800">
                             <th className="pb-4 pl-4">Rank</th>
                             <th className="pb-4">Player</th>
-                            <th className="pb-4">Game</th>
+                            <th className="pb-4">Token</th>
                             <th className="pb-4 pr-4 text-right">Score</th>
                         </tr>
                     </thead>

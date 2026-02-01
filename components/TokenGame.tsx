@@ -63,7 +63,7 @@ export function TokenGame({ tokenAddress, tokenName, tokenSymbol }: TokenGamePro
     return (
         <div className="w-full max-w-md mx-auto p-6 bg-gradient-to-br from-indigo-900/50 to-purple-900/50 rounded-2xl border border-white/10 backdrop-blur-xl shadow-2xl">
             <h2 className="text-2xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-pink-400">
-                {tokenSymbol} Rush!
+                Click Rush!
             </h2>
 
             <div className="text-center mb-6">

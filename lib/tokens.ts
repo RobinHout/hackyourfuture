@@ -13,10 +13,28 @@ export const TOKENS: Token[] = [
         description: 'The Aura token on Optimism.',
     },
     {
-        name: 'Optimism',
-        symbol: 'OP',
-        address: '0x4200000000000000000000000000000000000042',
-        description: 'The governance token for the Optimism Collective.',
+        name: 'Tether USD',
+        symbol: 'USDT',
+        address: '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58',
+        description: 'Stablecoin',
+    },
+    {
+        name: 'USD Coin',
+        symbol: 'USDC',
+        address: '0x0b2c639c4d93f019623e1f729de172e253d097ff85',
+        description: 'Stablecoin',
+    },
+    {
+        name: 'Dai Stablecoin',
+        symbol: 'DAI',
+        address: '0xda10009c4fbfb0b3c0813ab5f58c7c7c13000da1',
+        description: 'stablecoin',
+    },
+    {
+        name: 'Wrapped Bitcoin',
+        symbol: 'WBTC',
+        address: '0x68f180fcce6a72e8deaa6ee2f3d70cd8e654be2095',
+        description: 'Bitcoin on Ethereum/Optimism.',
     },
 ];
 
